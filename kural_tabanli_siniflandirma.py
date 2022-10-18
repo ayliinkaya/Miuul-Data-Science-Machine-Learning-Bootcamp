@@ -161,10 +161,11 @@ agg_df[["customers_level_based", "PRICE"]].head()
 #############################################
 # PRICE'a göre segmentlere ayırınız,
 # segmentleri "SEGMENT" isimlendirmesi ile agg_df'e ekleyiniz,
-# segmentleri betimleyiniz,
+# segmentleri betimleyiniz (Segmentlere göre group by yapıp price mean, max, sum’larını alınız).
 
 agg_df["SEGMENT"] = pd.qcut(agg_df["PRICE"], 4, labels=["D", "C", "B", "A"])
 agg_df["SEGMENT"].value_counts()
+agg_df.groupby("SEGMENT").agg({"PRICE": ["mean", "max", "sum"]})
 
 #############################################
 # GÖREV 8: Yeni gelen müşterileri sınıflandırınız ne kadar gelir getirebileceğini tahmin ediniz.
